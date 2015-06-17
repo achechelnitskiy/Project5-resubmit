@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+
+
+    <style type="text/css">
+        html, body { height: 100%; margin: 0; padding: 0;}
+
+        ul,li{max-width:200px;word-wrap:break-word;}
+          .filters {
+            width: 250px;
+            height: 100px;
+           /* background: light blue; */
+            border: 0px
+          }
+
+
+      .wikipedia-container {
+        float:center;
+        width:290px;
+        padding:10px;
+        margin-right: 10px;
+         background-color: rgba(255,255,255,0.7);
+      }
+
+
+      .article-list {
+          margin: 0;
+          padding: 0;
+      }
+
+      .bgimg {
+          position:fixed;
+          top: 0;
+          left: 0;
+          width:100%;
+          z-index:-1;
+          opacity:1;
+      }
+
+      #map-canvas {
+        height: 100%;
+        width: 100%;
+        position:absolute;
+        top: 0;
+        left: 0;
+        background-color: #CCC;
+
+        z-index: 0; /* Set z-index to 0 as it will be on a layer below the contact form */
+      }
+
+    </style>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+  </head>
+
+  <body>
+
+
+  <div style="height:100%; width: 400px;  position:absolute; right: 20%; margin-left: -20px; z-index:1;">
+
+    <b> SEARCH:</b><br>
+    <input type="text" id="search" value="">
+    <button  onclick="searchClick()">Search</button>
+
+    <br><br>
+    <b><font color="red">OR</font></b><br><br>
+    <b>FILTER</b><br>
+
+
+     <div class="filters">
+      <label><input type="radio" name="filters"  id="all" onclick="filterClick(this,'all')" checked="true" /> All</label>
+      <label><input type="radio" name="filters"  id="parks" onclick="filterClick(this,'park')" /> Parks </label>
+      <label><input type="radio" name="filters"  id="museum" onclick="filterClick(this,'museum')" />  Museums </label>
+    </div>
+
+    <h2>List of major Chicago attractions </h2>
+    <ul  data-bind="foreach: attractionsList">
+        <li data-bind="text: name, click: setAttraction"></li>
+    </ul>
+
+    <div style=" position:fixed;" >
+        <ul id="wikipedia-links"></ul>
+   </div>
+
+
+  </div>
+
+
+
+  <div id="map-canvas" style="height: 100%; position: fixed; top: 0; bottom: 0; left: 0; right: 0; z-index: 0"></div>
+
+  <script src="js/lib/knockout-3.3.0.js"></script>
+  <script src="js/lib/jquery.min.js"></script>
+  <script src="js/app.js"></script>
+
+  </body>
+</html>
